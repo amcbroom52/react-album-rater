@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from './logo.svg'
+import { AlbumRaterApi } from './api/api';
 import './App.css';
 
 
@@ -11,30 +11,18 @@ import './App.css';
 */
 
 function App() {
-  const [count, setCount] = useState(0);
 
-  function incrCount() {
-    setCount(count => count + 1);
+  function getRatings() {
+
+    async function apiCall() {
+      console.log(await AlbumRaterApi.getRatings());
+    }
+    apiCall();
   }
 
-  return (
-    <div className="App">
-      <main>
-        <img src={logo} className="App-logo" alt="Rithm" />
-        <h1>Rithm React Starter</h1>
-        <p>
-          <button
-              className="btn btn-primary"
-              onClick={incrCount}>
-            Clicked: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>src/App.jsx</code>
-        </p>
-      </main>
-    </div>
-  );
+  getRatings();
+
+  return "Test";
 };
 
 export default App;
