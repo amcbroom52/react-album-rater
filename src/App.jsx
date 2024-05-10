@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AlbumRaterApi } from './api/api';
+import { BrowserRouter } from 'react-router-dom';
+import NavBar from './common/NavBar';
+import RouteList from './common/RouteList';
 import './App.css';
 
 
@@ -11,18 +14,30 @@ import './App.css';
 */
 
 function App() {
+  const [ratings, setRatings] = useState([]);
 
-  function getRatings() {
-
+  useEffect(function getRatings() {
     async function apiCall() {
-      console.log(await AlbumRaterApi.getRatings());
+      const result = await AlbumRaterApi.getRatings();
+      setRatings(result);
     }
+
     apiCall();
-  }
+  }, []);
 
-  getRatings();
+  console.log(ratings);
 
-  return "Test";
+  return (
+    <div>
+      <BrowserRouter >
+        <NavBar />
+        <div className='pb-3'>
+          <RouteList />
+        </div>
+      </BrowserRouter>
+    </div>
+
+  );
 };
 
 export default App;

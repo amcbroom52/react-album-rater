@@ -1,0 +1,18 @@
+.RatingCard {
+  background-color: rgba(38, 39, 48, 0.141);
+  margin: auto;
+}
+
+.RatingCard-Body {
+  cursor: pointer;
+}
+
+.RatingCard-TimeStamp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.RatingCard-Image, .RatingCard-Title {
+  display: inline-block
+}
