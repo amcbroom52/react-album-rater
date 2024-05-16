@@ -1,12 +1,18 @@
 import StarField from "./StarField";
+import { useNavigate } from "react-router-dom";
 import "./RatingCard.css";
 
 
 function RatingCard({ rating }) {
+  const navigate = useNavigate();
+
+  function LoadRatingDetail() {
+    navigate(`/ratings/${rating.id}`);
+  }
 
   return (
     <div className="RatingCard card border-primary mb-3 text-light col-9">
-      <div className="RatingCard-Body card-body">
+      <div className="RatingCard-Body card-body" onClick={LoadRatingDetail}>
         <p className="RatingCard-TimeStamp text-body">
           {rating.timestamp}
         </p>

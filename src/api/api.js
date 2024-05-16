@@ -31,15 +31,20 @@ class AlbumRaterApi {
       ? JSON.stringify(data)
       : undefined;
 
-      const response = await fetch(url, { method, body, headers });
+    const response = await fetch(url, { method, body, headers });
 
-      if (!response.ok) {
-        console.error("API Error:", resp.statusText, resp.status);
-        const message = (await resp.json()).error.message;
-        throw Array.isArray(message) ? message : [message];
-      }
+    if (!response.ok) {
+      console.error("API Error:", resp.statusText, resp.status);
+      const message = (await resp.json()).error.message;
+      throw Array.isArray(message) ? message : [message];
+    }
 
     return await response.json();
+  }
+
+  static async login(username, password) {
+    const response = await this.request('/login', { username, password }, 'POST');
+    return response.token;
   }
 
   /** Gets data of all ratings in the database
@@ -58,6 +63,11 @@ class AlbumRaterApi {
     const response = await this.request('/ratings');
     return response.ratings;
   }
+
+  static async getRating(ratingId) {
+    const response = await this.request(`/ratings/${ratingId}`);
+    return response;
+  }
 }
 
-export {AlbumRaterApi}
+export { AlbumRaterApi };
