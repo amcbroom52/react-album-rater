@@ -15,6 +15,7 @@ class AlbumRaterApi {
    * takes information on the request being made, makes that request to the
    * backend, and returns the data sent back
    */
+
   static async request(endpoint, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
@@ -42,10 +43,34 @@ class AlbumRaterApi {
     return await response.json();
   }
 
+
+  /** Verifies given username and password
+   *
+   * Returns user token jwt token if valid combination
+   */
+
   static async login(username, password) {
     const response = await this.request('/login', { username, password }, 'POST');
     return response.token;
   }
+
+
+  /** Gets data of a user in the database
+   *
+   * returns {
+   *    id,
+   *    firstName,
+   *    lastName,
+   *    imageUrl,
+   *    bio,
+   *  }
+   */
+
+  static async getUser(username) {
+    const response = await this.request(`/users/${username}`);
+    return response.user;
+  }
+
 
   /** Gets data of all ratings in the database
    *
@@ -59,14 +84,29 @@ class AlbumRaterApi {
    *    album: { id, name, imageUrl, artistName, artistId }
    *  },...]
    */
+
   static async getRatings() {
     const response = await this.request('/ratings');
     return response.ratings;
   }
 
+
+  /** Gets data of a single rating in the database
+   *
+   * returns {
+   *    id,
+   *    rating,
+   *    favoriteSong,
+   *    text,
+   *    timestamp,
+   *    author,
+   *    album: { id, name, imageUrl, artistName, artistId }
+   *  }
+   */
+
   static async getRating(ratingId) {
     const response = await this.request(`/ratings/${ratingId}`);
-    return response;
+    return response.rating;
   }
 }
 

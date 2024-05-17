@@ -1,5 +1,16 @@
 import { NavLink } from 'react-router-dom';
+
 import './NavBar.css';
+
+
+/** Component for the nav bar.
+ *
+ * props: none
+ *
+ * state: none
+ *
+ * App -> NavBar -> NavLink
+ */
 
 function NavBar() {
 

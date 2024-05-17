@@ -1,5 +1,15 @@
 import LoadingSpinner from "./LoadingSpinner";
+
 import "./LoadingScreen.css";
+
+
+/** Component for full page loading.
+ *
+ * Props: none
+ *
+ * state: none
+ *
+ */
 
 function LoadingScreen() {
   return (

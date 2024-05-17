@@ -1,7 +1,19 @@
 import { useState, useEffect } from 'react';
-import { AlbumRaterApi } from '../api/api';
+
 import RatingCard from '../ratings/RatingCard';
 import LoadingScreen from './LoadingScreen';
+import { AlbumRaterApi } from '../api/api';
+
+
+/** Component for Home Page
+ *
+ * Props: none
+ *
+ * State:
+ * - ratings
+ *
+ * RouteList -> HomePage -> RatingCard
+ */
 
 function HomePage() {
   const [ratings, setRatings] = useState();

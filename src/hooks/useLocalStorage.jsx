@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-function useLocalStorage(key, initialValue) {
+
+
+/** Hook to handle data in local storage.
+ *
+ * Recieves or sets the local storage data of the given key.
+ */
+
+function useLocalStorage(key) {
     console.log('in useLocalStorage hook');
     const [data, setData] = useState(localStorage.getItem(key));
 

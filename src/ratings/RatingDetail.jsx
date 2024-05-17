@@ -1,9 +1,22 @@
-import StarField from "./StarField";
-import LoadingScreen from "../common/LoadingScreen";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
+
+import StarField from "./StarField";
+import LoadingScreen from "../common/LoadingScreen";
 import { AlbumRaterApi } from "../api/api";
+
 import "./RatingDetail.css";
+
+
+/** Component for an individual rating page.
+ *
+ * props: none
+ *
+ * state:
+ * - rating
+ *
+ * RouteList -> RatingDetail -> StarField
+ */
 
 function RatingDetail() {
   const [rating, setRating] = useState();
@@ -12,7 +25,7 @@ function RatingDetail() {
   useEffect(function getRating() {
     async function loadRating() {
       const result = await AlbumRaterApi.getRating(id);
-      setRating(result.rating);
+      setRating(result);
     }
     loadRating();
   });

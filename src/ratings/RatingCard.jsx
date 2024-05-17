@@ -1,7 +1,20 @@
-import StarField from "./StarField";
 import { useNavigate } from "react-router-dom";
+
+import StarField from "./StarField";
+
 import "./RatingCard.css";
 
+
+/** Component for a rating card.
+ *
+ * props:
+ * - rating
+ *
+ * state: none
+ *
+ * HomePage -> RatingCard -> StarField
+ *
+ */
 
 function RatingCard({ rating }) {
   const navigate = useNavigate();

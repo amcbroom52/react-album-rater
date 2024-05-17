@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import useLocalStorage from "./useLocalStorage";
-import AlbumRaterApi from "../api/api";
 import { jwtDecode } from "jwt-decode";
 
-function useAuth(initialToken) {
+import useLocalStorage from "./useLocalStorage";
+import { AlbumRaterApi } from "../api/api";
+
+
+/** Hook to handle all user related data. */
+
+function useAuth() {
   console.log('in useAuth hook');
-  const [token, setToken] = useLocalStorage(initialToken);
+  const [token, setToken] = useLocalStorage("token");
   const [user, setUser] = useState();
 
   useEffect(function getUserData() {
@@ -17,9 +21,8 @@ function useAuth(initialToken) {
         username: userData.username,
         firstName: userData.firstName,
         lastName: userData.lastName,
-        email: userData.email,
-        jobs: userData.applications,
-        isAdmin: userData.isAdmin,
+        imageUrl: userData.imageUrl,
+        bio: userData.bio,
       });
     }
     if (token) {
@@ -30,10 +33,22 @@ function useAuth(initialToken) {
     }
   }, [token]);
 
+
+  /** Verifies username/password combination.
+   *
+   * Sets token to returned jwt token if combination is valid.
+   */
+
   async function login(username, password) {
     const resp = await AlbumRaterApi.login(username, password);
     setToken(resp.token);
   }
+
+
+  /** Creates a new user in the backend with given data.
+   *
+   * Sets token to returned jwt token if user creation is successful.
+   */
 
   async function signup(data) {
     const resp = await AlbumRaterApi.signup(inputValues);
@@ -47,6 +62,9 @@ function useAuth(initialToken) {
   //     ...updatedData,
   //   }));
   // }
+
+
+  /** Sets token to null. */
 
   async function logout() {
     setToken(null);

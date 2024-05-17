@@ -1,4 +1,13 @@
 
+/** Component for displaying the amount of stars a rating has.
+ *
+ * props:
+ * - numStars
+ *
+ * state: none
+ *
+ * RatingCard, RatingDetail -> StarField
+ */
 
 function StarField({ numStars }) {
 
