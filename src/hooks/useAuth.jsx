@@ -15,8 +15,10 @@ function useAuth() {
   useEffect(function getUserData() {
     async function fetchUserData() {
       AlbumRaterApi.token = token;
-      const { username } = jwtDecode(token);
+      const { username } = jwtDecode(token).sub;
+      console.log("USERNAME", jwtDecode(token).sub.username);
       const userData = await AlbumRaterApi.getUser(username);
+      console.log("USER DATA", userData);
       setUser({
         username: userData.username,
         firstName: userData.firstName,
@@ -39,9 +41,10 @@ function useAuth() {
    * Sets token to returned jwt token if combination is valid.
    */
 
-  async function login(username, password) {
+  async function login({ username, password }) {
     const resp = await AlbumRaterApi.login(username, password);
-    setToken(resp.token);
+    setToken(resp);
+    console.log("TOKEN!!!!", resp);
   }
 
 

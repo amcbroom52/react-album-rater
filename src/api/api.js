@@ -19,9 +19,12 @@ class AlbumRaterApi {
   static async request(endpoint, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
-      // authorization: `Bearer ${AlbumRaterApi.token}`,
+      authorization: `Bearer ${AlbumRaterApi.token}`,
       'content-type': 'application/json',
     };
+
+    console.log("HEADERS", headers);
+    console.log("TOKEN",AlbumRaterApi.token);
 
     url.search = (method === "GET")
       ? new URLSearchParams(data).toString()
@@ -34,9 +37,10 @@ class AlbumRaterApi {
 
     const response = await fetch(url, { method, body, headers });
 
+
     if (!response.ok) {
-      console.error("API Error:", resp.statusText, resp.status);
-      const message = (await resp.json()).error.message;
+      console.error("API Error:", response.statusText, response.status);
+      const message = (await response.json()).error.message;
       throw Array.isArray(message) ? message : [message];
     }
 
@@ -50,7 +54,8 @@ class AlbumRaterApi {
    */
 
   static async login(username, password) {
-    const response = await this.request('/login', { username, password }, 'POST');
+    console.log("USERNAME AND PASSWORD", username, password);
+    const response = await this.request('login', { username, password }, 'POST');
     return response.token;
   }
 
@@ -67,7 +72,7 @@ class AlbumRaterApi {
    */
 
   static async getUser(username) {
-    const response = await this.request(`/users/${username}`);
+    const response = await this.request(`users/${username}`);
     return response.user;
   }
 
@@ -86,7 +91,7 @@ class AlbumRaterApi {
    */
 
   static async getRatings() {
-    const response = await this.request('/ratings');
+    const response = await this.request('ratings');
     return response.ratings;
   }
 
@@ -105,7 +110,7 @@ class AlbumRaterApi {
    */
 
   static async getRating(ratingId) {
-    const response = await this.request(`/ratings/${ratingId}`);
+    const response = await this.request(`ratings/${ratingId}`);
     return response.rating;
   }
 }

@@ -4,6 +4,7 @@ import NavBar from './common/NavBar';
 import RouteList from './common/RouteList';
 import useAuth from './hooks/useAuth';
 import userContext from './users/userContext';
+import LoadingScreen from './common/LoadingScreen';
 
 import './App.css';
 
@@ -19,7 +20,9 @@ import './App.css';
 */
 
 function App() {
-  const { user } = useAuth();
+  const { user, login, token } = useAuth();
+
+  if (token && !user) return <LoadingScreen />;
 
   return (
     <div>
@@ -27,7 +30,7 @@ function App() {
         <BrowserRouter >
           <NavBar />
           <div className='pb-3'>
-            <RouteList />
+            <RouteList login={login} />
           </div>
         </BrowserRouter>
       </userContext.Provider>

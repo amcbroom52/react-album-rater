@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 function useLocalStorage(key) {
     console.log('in useLocalStorage hook');
     const [data, setData] = useState(localStorage.getItem(key));
+    console.log("LOCAL TOKEN", data);
 
     useEffect(function getDataFromStorage() {
         if (!data) {

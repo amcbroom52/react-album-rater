@@ -27,8 +27,6 @@ function HomePage() {
     apiCall();
   }, []);
 
-  console.log(ratings);
-
   if (!ratings) return <LoadingScreen />;
 
   return (
