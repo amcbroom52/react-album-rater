@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import Alert from "../common/Alert";
-import useAuth from "../hooks/useAuth";
 
 import "./LoginPage.css";
 
@@ -27,7 +26,6 @@ const INITIAL_STATE = {
 function LoginPage({ login }) {
   const [inputValues, setInputValues] = useState(INITIAL_STATE);
   const [errors, setErrors] = useState([]);
-  // const { login } = useAuth();
   const navigate = useNavigate();
 
   /** updates inputValues. */
@@ -55,7 +53,7 @@ function LoginPage({ login }) {
         Login
       </h1>
 
-      <div className="LoginPage-Form card border-primary mb-3 mt-5 text-light col-8 col-sm-3">
+      <div className="LoginPage-form card border-primary mb-3 mt-5 text-light col-8 col-sm-3">
         <div className="card-body">
           <form onSubmit={handleSubmit} className="w-100">
             <label htmlFor="username" className="LoginPage-label">
@@ -81,8 +79,10 @@ function LoginPage({ login }) {
               className="LoginPage-input form-control"
             /> <br />
 
-            <p className="text-secondary">Don't have an account?
-              <a href="/signup" className="text-primary"> Sign up</a>
+            <p className="text-secondary">Don't have an account? <Link
+              to="/signup" className="text-primary">
+              Sign up
+            </Link>
             </p>
 
             <button type="submit" className="btn btn-primary">

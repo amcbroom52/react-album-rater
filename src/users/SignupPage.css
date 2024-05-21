@@ -1,12 +1,12 @@
-.LoginPage-title {
+.SignupPage-title {
   text-align: center;
 }
 
-.LoginPage-form {
+.SignupPage-form {
   background-color: rgba(38, 39, 48, 0.141);
   margin: auto;
 }
 
-.LoginPage-input {
+.SignupPage-input {
   margin: auto;
 }
