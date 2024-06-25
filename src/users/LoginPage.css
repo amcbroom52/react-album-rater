@@ -10,3 +10,8 @@
 .LoginPage-input {
   margin: auto;
 }
+
+.LoginPage-alert {
+  display: flex;
+  justify-content: center;
+}

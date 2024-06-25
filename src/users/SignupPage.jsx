@@ -36,6 +36,11 @@ function SignupPage({ signup }) {
 
   return (
     <div className="SignupPage">
+
+      <div className="LoginPage-alert">
+        {errors.map(err => <Alert type="danger" text={err} />)}
+      </div>
+
       <h1 className="SignupPage-title text-primary mt-5">
         Signup
       </h1>

@@ -40,7 +40,7 @@ class AlbumRaterApi {
 
     if (!response.ok) {
       console.error("API Error:", response.statusText, response.status);
-      const message = (await response.json()).error.message;
+      const message = (await response.json()).errors;
       throw Array.isArray(message) ? message : [message];
     }
 

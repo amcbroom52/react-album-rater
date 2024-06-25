@@ -43,12 +43,18 @@ function LoginPage({ login }) {
       await login(inputValues);
       navigate('/');
     } catch (err) {
+      console.log("ERRORS", err);
       setErrors(err);
     }
   }
 
   return (
     <div className="LoginPage">
+
+      <div className="LoginPage-alert">
+        {errors.map(err => <Alert type="danger" text={err} />)}
+      </div>
+
       <h1 className="LoginPage-title text-primary mt-5">
         Login
       </h1>
