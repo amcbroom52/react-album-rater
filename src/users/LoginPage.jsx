@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import Alert from "../common/Alert";
@@ -14,19 +14,18 @@ const INITIAL_STATE = {
 
 /** Component for the login page.
  *
- * props: none
+ * props: login()
  *
  * state:
  * - inputValues
  * - errors
  *
- * RouteList -> LoginPage
+ * RouteList -> LoginPage -> Alert
  */
 
 function LoginPage({ login }) {
   const [inputValues, setInputValues] = useState(INITIAL_STATE);
   const [errors, setErrors] = useState([]);
-  const navigate = useNavigate();
 
   /** updates inputValues. */
   function handleChange(evt) {
@@ -41,7 +40,6 @@ function LoginPage({ login }) {
     evt.preventDefault();
     try {
       await login(inputValues);
-      navigate('/');
     } catch (err) {
       console.log("ERRORS", err);
       setErrors(err);
@@ -52,7 +50,7 @@ function LoginPage({ login }) {
     <div className="LoginPage">
 
       <div className="LoginPage-alert">
-        {errors.map(err => <Alert type="danger" text={err} />)}
+        {errors.map(err => <Alert type="danger" text={err} key={uuid()}/>)}
       </div>
 
       <h1 className="LoginPage-title text-primary mt-5">

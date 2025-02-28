@@ -20,7 +20,7 @@ import './App.css';
 */
 
 function App() {
-  const { user, login, token } = useAuth();
+  const { user, login, signup, logout, token } = useAuth();
 
   if (token && !user) return <LoadingScreen />;
 
@@ -28,9 +28,9 @@ function App() {
     <div>
       <userContext.Provider value={user} >
         <BrowserRouter >
-          <NavBar />
+          <NavBar logout={logout} />
           <div className='pb-3'>
-            <RouteList login={login} />
+            <RouteList login={login} signup={signup} />
           </div>
         </BrowserRouter>
       </userContext.Provider>

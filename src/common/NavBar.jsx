@@ -12,7 +12,7 @@ import './NavBar.css';
  * App -> NavBar -> NavLink
  */
 
-function NavBar() {
+function NavBar({ logout }) {
 
   return (
     <div className="NavBar navbar navbar-expand-lg bg-primary">
@@ -22,7 +22,7 @@ function NavBar() {
       <div className='NavBar-right'>
         <NavLink className='NavBar-link' to='/search'>Search</NavLink>
         <NavLink className='NavBar-link' to='/user'>My Profile</NavLink>
-        <NavLink className='NavBar-link active' to='/'>Logout</NavLink>
+        <NavLink className='NavBar-link active' to='/' onClick={logout}>Logout</NavLink>
       </div>
     </div>
   )

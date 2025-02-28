@@ -59,6 +59,23 @@ class AlbumRaterApi {
     return response.token;
   }
 
+  /** Sends a request to create a new user in the database
+   *
+   * Return user token jwt if user is successfully created
+   */
+
+  static async signup(username, firstName, lastName, password) {
+    console.log("USERNAME, FIRSTNAME, LASTNAME, PASSWORD",
+      username, firstName, lastName, password);
+
+    const response = await this.request(
+      'signup',
+      {username, firstName, lastName, password},
+      "POST"
+    );
+    return response.token;
+  }
+
 
   /** Gets data of a user in the database
    *

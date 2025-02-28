@@ -53,9 +53,9 @@ function useAuth() {
    * Sets token to returned jwt token if user creation is successful.
    */
 
-  async function signup(data) {
-    const resp = await AlbumRaterApi.signup(inputValues);
-    setToken(resp.token);
+  async function signup({ username, firstName, lastName, password }) {
+    const resp = await AlbumRaterApi.signup(username, firstName, lastName, password);
+    setToken(resp);
   }
 
   // async function update(data) {

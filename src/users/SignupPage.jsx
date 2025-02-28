@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
+import Alert from "../common/Alert";
 import "./SignupPage.css";
 
 const INITIAL_STATE = {
@@ -10,10 +12,20 @@ const INITIAL_STATE = {
   password: "",
 };
 
+/** Component for the login page.
+ *
+ * props: signup()
+ *
+ * state:
+ * - inputValues
+ * - errors
+ *
+ * RouteList -> SignupPage -> Alert
+ */
+
 function SignupPage({ signup }) {
   const [inputValues, setInputValues] = useState(INITIAL_STATE);
   const [errors, setErrors] = useState([]);
-  const navigate = useNavigate();
 
   /** updates inputValues. */
   function handleChange(evt) {
@@ -26,10 +38,16 @@ function SignupPage({ signup }) {
   /** Calls fn in parent. */
   async function handleSubmit(evt) {
     evt.preventDefault();
+
+    if (inputValues.password.length < 6) {
+      setErrors(["Invalid password."]);
+      return;
+    }
+
     try {
       await signup(inputValues);
-      navigate("/");
     } catch (err) {
+      console.log("ERRORS:", err);
       setErrors(err);
     }
   }
@@ -38,7 +56,7 @@ function SignupPage({ signup }) {
     <div className="SignupPage">
 
       <div className="LoginPage-alert">
-        {errors.map(err => <Alert type="danger" text={err} />)}
+        {errors.map(err => <Alert type="danger" text={err} key={uuid()} />)}
       </div>
 
       <h1 className="SignupPage-title text-primary mt-5">
