@@ -5,7 +5,7 @@ import './NavBar.css';
 
 /** Component for the nav bar.
  *
- * props: none
+ * props: logout()
  *
  * state: none
  *

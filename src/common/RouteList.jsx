@@ -10,7 +10,7 @@ import userContext from '../users/userContext';
 
 /** Component for configuring url routes.
  *
- * props: none
+ * props: login(), signup()
  *
  * state: none
  *
