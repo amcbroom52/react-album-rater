@@ -93,6 +93,20 @@ class AlbumRaterApi {
     return response.user;
   }
 
+  /** Gets data of a user in the database, along with whether that user is
+   * being followed by the current logged in user
+   *
+   * returns {
+   *    user: { id, firstName, lastName, imageUrl, bio },
+   *    following
+   *  }
+   */
+
+  static async getUserWithFollowing(username) {
+    const response = await this.request(`users/${username}`);
+    return response;
+  }
+
 
   /** Gets data of all ratings in the database
    *
@@ -107,8 +121,8 @@ class AlbumRaterApi {
    *  },...]
    */
 
-  static async getRatings() {
-    const response = await this.request('ratings');
+  static async getRatings(params) {
+    const response = await this.request('ratings', params);
     return response.ratings;
   }
 

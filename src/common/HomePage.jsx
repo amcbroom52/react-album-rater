@@ -19,12 +19,12 @@ function HomePage() {
   const [ratings, setRatings] = useState();
 
   useEffect(function getRatings() {
-    async function apiCall() {
-      const result = await AlbumRaterApi.getRatings();
+    async function fetchRatings() {
+      const result = await AlbumRaterApi.getRatings({"homepage" : "True"});
       setRatings(result);
     }
 
-    apiCall();
+    fetchRatings();
   }, []);
 
   if (!ratings) return <LoadingScreen />;

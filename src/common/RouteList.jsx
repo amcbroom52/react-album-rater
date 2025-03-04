@@ -1,11 +1,12 @@
 import {Route, Routes, Navigate} from 'react-router-dom';
+import { useContext } from 'react';
 
 import HomePage from './HomePage';
 import RatingDetail from '../ratings/RatingDetail';
 import LoginPage from '../users/LoginPage';
 import SignupPage from '../users/SignupPage';
-import { useContext } from 'react';
 import userContext from '../users/userContext';
+import UserPage from '../users/UserPage';
 
 
 /** Component for configuring url routes.
@@ -27,6 +28,7 @@ function RouteList({ login, signup }) {
         ? <>
             <Route path='/' element={<HomePage />}/>
             <Route path='/ratings/:id' element={<RatingDetail />} />
+            <Route path='/users/:username' element={<UserPage />} />
             <Route path='*' element={<Navigate to='/' />} />
         </>
 

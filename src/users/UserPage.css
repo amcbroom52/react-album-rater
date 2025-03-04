@@ -1,0 +1,37 @@
+.UserPage-user-info {
+  margin: auto;
+}
+
+.UserPage-image {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.UserPage-account {
+  display: inline-block;
+}
+
+.UserPage-edit-btn {
+  border-radius: 20px;
+  position: relative;
+  /* left: 90%; */
+  top: 50%;
+}
+
+.UserPage-unfollow-btn {
+  border-radius: 20px;
+  position: relative;
+  /* left: 90%; */
+  top: 50%;
+}
+
+.UserPage-follow-btn {
+  border-radius: 20px;
+  position: relative;
+  /* left: 90%; */
+  top: 50%;
+}
+
+.UserPage-bio {
+  margin: auto;
+}
